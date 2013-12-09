@@ -1,0 +1,21 @@
+# Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
+bin
+obj
+
+*.orig
+*.user
+*.tmp_proj
+
+# mstest test results
+TestResults
+_ReSharper.DataVehicles4
+Deploy
+
+DataVehicles4/DataVehicles4.v11.suo
+/datavehicles4/DataVehicles4.Service/service_fatal_errors.txt
+/DataVehicles4/DataVehicles4.v11.suo
+/DataVehicles4/DataVehicles4.sln.DotSettings.user
+/DataVehicles4/DataVehicles4.6.0.ReSharper.user
+
+DataVehicles4/Server/Service/service_fatal_errors.txt
+temp.sql
