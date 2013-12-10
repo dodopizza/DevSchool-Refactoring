@@ -24,7 +24,11 @@ namespace VideoStore
 
 		public String Title 
 		{
-            get { return _title; }
+            get {
+                if (_priceCode == 1)
+                return _title + " (New)";
+                return _title;
+            }
 			
 		}
 	}

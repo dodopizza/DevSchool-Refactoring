@@ -35,21 +35,21 @@ namespace Tests
 		public void StatementOneNewMovieOneDay()
 		{
 			customer.AddRental(new Rental(new Movie(SHOW_NAME1, Movie.NEW_RELEASE), 1));
-			AssertStatement(SHOW_NAME1, 3.0f, 3.0f, 1);
+			AssertStatement(SHOW_NAME1 + " (New)", 3.0f, 3.0f, 1);
 		}
 
 		[Test]
 		public void StatementOneNewMovieTwoDay()
 		{
 			customer.AddRental(new Rental(new Movie(SHOW_NAME1, Movie.NEW_RELEASE), 2));
-			AssertStatement(SHOW_NAME1, 6.0f, 6.0f, 2);
+			AssertStatement(SHOW_NAME1 + " (New)", 6.0f, 6.0f, 2);
 		}
 
 		[Test]
 		public void StatementOneNewMovieThreeDays()
 		{
 			customer.AddRental(new Rental(new Movie(SHOW_NAME1, Movie.NEW_RELEASE), 3));
-			AssertStatement(SHOW_NAME1, 9.0f, 9.0f, 2);
+			AssertStatement(SHOW_NAME1 + " (New)", 9.0f, 9.0f, 2);
 		}
 
 		[Test]
@@ -99,7 +99,7 @@ namespace Tests
 		{
 			customer.AddRental(new Rental(new Movie(SHOW_NAME1, Movie.NEW_RELEASE), 3));
 			customer.AddRental(new Rental(new Movie(SHOW_NAME2, Movie.NEW_RELEASE), 3));
-			AssertStatement(new String[] {SHOW_NAME1, SHOW_NAME2}, new float[] {9f, 9f}, 18f, 4);
+			AssertStatement(new String[] {SHOW_NAME1 + " (New)", SHOW_NAME2 + " (New)"}, new float[] {9f, 9f}, 18f, 4);
 		}
 
 		[Test]
@@ -124,7 +124,7 @@ namespace Tests
 			customer.AddRental(new Rental(new Movie(SHOW_NAME1, Movie.NEW_RELEASE), 4));
 			customer.AddRental(new Rental(new Movie(SHOW_NAME2, Movie.REGULAR), 4));
 			customer.AddRental(new Rental(new Movie(SHOW_NAME3, Movie.CHILDRENS), 4));
-			AssertStatement(new String[] {SHOW_NAME1, SHOW_NAME2, SHOW_NAME3}, new float[] {12f, 5f, 3f}, 20f, 4);
+			AssertStatement(new String[] {SHOW_NAME1 + " (New)", SHOW_NAME2, SHOW_NAME3}, new float[] {12f, 5f, 3f}, 20f, 4);
 		}
 
 		private void AssertStatement(String show, float showCost, float totalCost, int frequentPoints)
