@@ -23,13 +23,13 @@ namespace VideoStore
 		public string Statement() 
 		{
 			double totalAmount = 0;
-			int frequentRenterPoints = 0;
+			var frequentRenterPoints = 0;
 
-			string result = "Rental Record for " + Name + "\n";
+			var result = "Rental Record for " + Name + "\n";
 
 			foreach (Rental each in rentals)
 			{
-				double thisAmount = GetRentalCost(each);
+				var thisAmount = GetRentalCost(each);
 
 				frequentRenterPoints++;
 
@@ -44,8 +44,8 @@ namespace VideoStore
 			}
 
 
-			result += ("Amount owed is " + totalAmount + "\n");
-			result += ("You earned " + frequentRenterPoints + " frequent renter points");
+			result += "Amount owed is " + totalAmount + "\n";
+			result += "You earned " + frequentRenterPoints + " frequent renter points";
 
 			return result;
 		}
@@ -61,13 +61,13 @@ namespace VideoStore
 
 					if (rental.DaysRented > 2)
 					{
-						thisAmount += ((rental.DaysRented - 2) * 1.5);
+						thisAmount += (rental.DaysRented - 2) * 1.5;
 					}
 
 					break;
 
 				case Movie.NEW_RELEASE:
-					thisAmount += (rental.DaysRented * 3);
+					thisAmount += rental.DaysRented * 3;
 
 					break;
 
@@ -76,7 +76,7 @@ namespace VideoStore
 
 					if (rental.DaysRented > 3)
 					{
-						thisAmount += ((rental.DaysRented - 3) * 1.5);
+						thisAmount += (rental.DaysRented - 3) * 1.5;
 					}
 
 					break;
