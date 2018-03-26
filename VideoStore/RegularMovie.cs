@@ -2,7 +2,7 @@ namespace VideoStore
 {
     public class RegularMovie : Movie
     {
-        public RegularMovie(string title) : base(title, REGULAR)
+        public RegularMovie(string title) : base(title)
         {
         }
 
