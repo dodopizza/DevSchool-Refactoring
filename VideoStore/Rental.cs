@@ -25,24 +25,17 @@ namespace VideoStore
 		{
 			get
 			{
-				double thisAmount = 0;
-
 				switch (Movie.PriceCode)
 				{
 					case Movie.REGULAR:
-						thisAmount = RegularMovieCost();
-						break;
-
+						return RegularMovieCost();
 					case Movie.NEW_RELEASE:
-						thisAmount = NewReleaseCost();
-						break;
-
+						return NewReleaseCost();
 					case Movie.CHILDRENS:
-						thisAmount = ChildrenMovieCost();
-						break;
+						return ChildrenMovieCost();
+					default:
+						return 0;
 				}
-
-				return thisAmount;
 			}
 		}
 
