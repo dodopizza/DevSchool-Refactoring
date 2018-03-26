@@ -51,11 +51,6 @@ namespace VideoStore
 			return thisAmount;
 		}
 
-		private double NewReleaseCost()
-		{
-			return DaysRented * 3;
-		}
-
 		private double RegularMovieCost()
 		{
 			double thisAmount = 2;
@@ -66,6 +61,11 @@ namespace VideoStore
 			}
 
 			return thisAmount;
+		}
+
+		private double NewReleaseCost()
+		{
+			return DaysRented * 3;
 		}
 	}
 }
