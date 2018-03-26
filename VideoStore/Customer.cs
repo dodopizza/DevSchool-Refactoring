@@ -6,37 +6,32 @@ namespace VideoStore
 {
 	public class Customer 
 	{
-		private readonly string _name;
-		private readonly List<Rental> _rentals = new List<Rental>();
+		private readonly List<Rental> rentals = new List<Rental>();
 
 		public Customer(string name) 
 		{
-			_name = name;
+			this.Name = name;
 		}
 
 		public void AddRental(Rental arg) 
 		{
-			_rentals.Add(arg);
+			rentals.Add(arg);
 		}
 
-		public string Name => _name;
+		public string Name { get; }
 
 		public string Statement() 
 		{
 			double totalAmount = 0;
 			var frequentRenterPoints = 0;
 
+			// Select every inside of the parantheses and extract to method called CreateHeader
 			var result = "Rental Record for " + Name + "\n";
 
-			foreach (var each in _rentals)
+			foreach (var each in rentals)
 			{
 				var thisAmount = GetRentalCost(each);
-				frequentRenterPoints++;
-
-				if (each.Movie.PriceCode == Movie.NEW_RELEASE && each.DaysRented > 1) 
-				{
-					frequentRenterPoints++;
-				}
+				frequentRenterPoints += GetPointsForRental(each);
 
 				result += "\t" + each.Movie.Title + "\t" + thisAmount + "\n";
 				totalAmount += thisAmount;
@@ -82,6 +77,16 @@ namespace VideoStore
 			}
 
 			return thisAmount;
+		}
+
+		private int GetPointsForRental(Rental each)
+		{
+			if (each.Movie.PriceCode == Movie.NEW_RELEASE && each.DaysRented > 1)
+			{
+				return 2;
+			}
+
+			return 1;
 		}
 	}
 }
