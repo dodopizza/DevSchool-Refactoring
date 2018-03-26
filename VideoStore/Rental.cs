@@ -30,33 +30,49 @@ namespace VideoStore
 				switch (Movie.PriceCode)
 				{
 					case Movie.REGULAR:
-						thisAmount += 2;
-
-						if (DaysRented > 2)
-						{
-							thisAmount += (DaysRented - 2) * 1.5;
-						}
-
+						thisAmount = RegularMovieCost();
 						break;
 
 					case Movie.NEW_RELEASE:
-						thisAmount += DaysRented * 3;
-
+						thisAmount = NewReleaseCost();
 						break;
 
 					case Movie.CHILDRENS:
-						thisAmount += 1.5;
-
-						if (DaysRented > 3)
-						{
-							thisAmount += (DaysRented - 3) * 1.5;
-						}
-
+						thisAmount = ChildrenMovieCost();
 						break;
 				}
 
 				return thisAmount;
 			}
+		}
+
+		private double ChildrenMovieCost()
+		{
+			double thisAmount = 1.5;
+
+			if (DaysRented > 3)
+			{
+				thisAmount += (DaysRented - 3) * 1.5;
+			}
+
+			return thisAmount;
+		}
+
+		private double NewReleaseCost()
+		{
+			return DaysRented * 3;
+		}
+
+		private double RegularMovieCost()
+		{
+			double thisAmount = 2;
+
+			if (DaysRented > 2)
+			{
+				thisAmount += (DaysRented - 2) * 1.5;
+			}
+
+			return thisAmount;
 		}
 	}
 }
