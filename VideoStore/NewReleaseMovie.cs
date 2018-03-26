@@ -2,7 +2,7 @@
 {
     public class NewReleaseMovie : Movie
     {
-        public override int PriceCode => NEW_RELEASE;
+        public override MovieType PriceCode => MovieType.NEW_RELEASE;
 
         public NewReleaseMovie(string title) : base(title)
         {

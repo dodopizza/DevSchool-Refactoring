@@ -2,7 +2,7 @@
 {
     public class ChildrenMovie : Movie
     {
-        public override int PriceCode => CHILDRENS;
+        public override MovieType PriceCode => MovieType.CHILDRENS;
 
         public ChildrenMovie(string title) : base(title)
         {

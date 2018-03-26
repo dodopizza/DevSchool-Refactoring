@@ -2,7 +2,7 @@
 {
     public class RegularMovie : Movie
     {
-        public override int PriceCode => REGULAR;
+        public override MovieType PriceCode => MovieType.REGULAR;
 
         public RegularMovie(string title) : base(title)
         {

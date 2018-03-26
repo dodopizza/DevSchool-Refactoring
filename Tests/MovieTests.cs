@@ -19,9 +19,8 @@ namespace Tests
 		[Test]
 		public void GetPriceCode() 
 		{
-			Assert.AreEqual(Movie.REGULAR, movie.PriceCode);
+			Assert.AreEqual(MovieType.REGULAR, movie.PriceCode);
 		}
-  
 
 		[Test]
 		public void GetTitle() 
