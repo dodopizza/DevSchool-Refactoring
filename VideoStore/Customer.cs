@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace VideoStore
 {
@@ -20,18 +21,14 @@ namespace VideoStore
 
         public string Statement()
         {
-            double totalAmount = 0;
-
             var result = $"Rental Record for {Name}\n";
 
             foreach (var rental in rentals)
             {
                 result += $"\t{rental.Movie.Title}\t{rental.Cost}\n";
-                totalAmount += rental.Cost;
             }
 
-
-            result += $"Amount owed is {totalAmount}\n";
+            result += $"Amount owed is {GetTotalCost()}\n";
             result += $"You earned {TotalFrequentRenterPoints()} frequent renter points";
 
             return result;
@@ -47,6 +44,11 @@ namespace VideoStore
             }
 
             return frequentRenterPoints;
+        }
+
+        private double GetTotalCost()
+        {
+            return rentals.Sum(_ => _.Cost);
         }
     }
 }
