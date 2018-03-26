@@ -43,15 +43,9 @@ namespace VideoStore
 
         private int GetFrequentRentalPoints(Rental rental)
         {
-            var frequentRenterPoints = 1;
+            var isNewFilm = rental.Movie.PriceCode == Movie.NEW_RELEASE && rental.DaysRented > 1;
 
-            if (rental.Movie.PriceCode == Movie.NEW_RELEASE
-                && rental.DaysRented > 1)
-            {
-                frequentRenterPoints++;
-            }
-
-            return frequentRenterPoints;
+            return isNewFilm ? 2 : 1;
         }
 
         private double GetRentalCost(Rental rental)
