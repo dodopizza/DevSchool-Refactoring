@@ -1,6 +1,5 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace VideoStore
 {
@@ -10,7 +9,7 @@ namespace VideoStore
 
 		public Customer(string name) 
 		{
-			this.Name = name;
+			Name = name;
 		}
 
 		public void AddRental(Rental arg) 
@@ -22,25 +21,28 @@ namespace VideoStore
 
 		public string Statement() 
 		{
-			double totalAmount = 0;
-			var frequentRenterPoints = 0;
-
 			var result = "Rental Record for " + Name + "\n";
 
 			foreach (var rental in rentals)
 			{
-				var thisAmount = rental.GetRentalCost();
-				frequentRenterPoints += rental.GetPointsForRenter();
-
-				result += "\t" + rental.Movie.Title + "\t" + thisAmount + "\n";
-				totalAmount += thisAmount;
+				result += "\t" + rental.Movie.Title + "\t" + rental.GetRentalCost() + "\n";
 			}
 
 
-			result += "Amount owed is " + totalAmount + "\n";
-			result += "You earned " + frequentRenterPoints + " frequent renter points";
+			result += "Amount owed is " + GetTotalRentalCost() + "\n";
+			result += "You earned " + GetTotalRenterPoints() + " frequent renter points";
 
 			return result;
+		}
+
+		private int GetTotalRenterPoints()
+		{
+			return rentals.Sum(rental => rental.GetPointsForRenter());
+		}
+
+		private double GetTotalRentalCost()
+		{
+			return rentals.Sum(rental => rental.GetRentalCost());
 		}
 	}
 }

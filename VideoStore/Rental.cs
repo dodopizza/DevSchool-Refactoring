@@ -17,49 +17,24 @@ namespace VideoStore
 		
 		public double GetRentalCost()
 		{
-			var thisAmount = 0d;
-			
 			switch (Movie.PriceCode) 
 			{
 				case Movie.REGULAR:
-					thisAmount += 2;
-
-					if (DaysRented > 2) 
-					{
-						thisAmount += (DaysRented - 2) * 1.5;
-					}
-
-					break;
+					return DaysRented > 2 ? 2 + (DaysRented - 2) * 1.5 : 2;
 
 				case Movie.NEW_RELEASE:
-					thisAmount += (DaysRented * 3);
-
-					break;
+					return DaysRented * 3;
 
 				case Movie.CHILDRENS:
-					thisAmount += 1.5;
-
-					if (DaysRented > 3) 
-					{
-						thisAmount += (DaysRented - 3) * 1.5;
-					}
-
-					break;
+					return DaysRented > 3 ? (DaysRented - 2) * 1.5 : 1.5;
+				default:
+					throw new InvalidOperationException();
 			}
-
-			return thisAmount;
 		}
 		
 		public int GetPointsForRenter()
 		{
-			if (Movie.PriceCode == Movie.NEW_RELEASE && DaysRented > 1)
-			{
-				return 2;
-			}
-
-			return 1;
+			return Movie.PriceCode == Movie.NEW_RELEASE && DaysRented > 1 ? 2 : 1;
 		}
-
-		
 	}
 }
