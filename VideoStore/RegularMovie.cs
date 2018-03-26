@@ -4,7 +4,7 @@
     {
         public override int PriceCode => REGULAR;
 
-        public RegularMovie(string title, int priceCode) : base(title)
+        public RegularMovie(string title) : base(title)
         {
         }
 

@@ -51,42 +51,42 @@ namespace Tests
         [Test]
         public void StatementOneRegularMovieOneDay()
         {
-            customer.AddRental(new Rental(new RegularMovie("show1", Movie.REGULAR), 1));
+            customer.AddRental(new Rental(new RegularMovie("show1"), 1));
             AssertStatement("show1", 2.0f, 2.0f, 1);
         }
 
         [Test]
         public void StatementOneRegularMovieTwoDay()
         {
-            customer.AddRental(new Rental(new RegularMovie("show1", Movie.REGULAR), 2));
+            customer.AddRental(new Rental(new RegularMovie("show1"), 2));
             AssertStatement("show1", 2.0f, 2.0f, 1);
         }
 
         [Test]
         public void StatementOneRegularMovieThreeDays()
         {
-            customer.AddRental(new Rental(new RegularMovie("show1", Movie.REGULAR), 3));
+            customer.AddRental(new Rental(new RegularMovie("show1"), 3));
             AssertStatement("show1", 3.5f, 3.5f, 1);
         }
 
         [Test]
         public void StatementOneChildMovieOneDay()
         {
-            customer.AddRental(new Rental(new ChildrenMovie("show1", Movie.CHILDRENS), 1));
+            customer.AddRental(new Rental(new ChildrenMovie("show1"), 1));
             AssertStatement("show1", 1.5f, 1.5f, 1);
         }
 
         [Test]
         public void StatementOneChildMovieThreeDay()
         {
-            customer.AddRental(new Rental(new ChildrenMovie("show1", Movie.CHILDRENS), 3));
+            customer.AddRental(new Rental(new ChildrenMovie("show1"), 3));
             AssertStatement("show1", 1.5f, 1.5f, 1);
         }
 
         [Test]
         public void StatementOneChildMovieFourDays()
         {
-            customer.AddRental(new Rental(new ChildrenMovie("show1", Movie.CHILDRENS), 4));
+            customer.AddRental(new Rental(new ChildrenMovie("show1"), 4));
             AssertStatement("show1", 3.0f, 3.0f, 1);
         }
 
@@ -101,16 +101,16 @@ namespace Tests
         [Test]
         public void StatementTwoRegularMoviesThreeDays()
         {
-            customer.AddRental(new Rental(new RegularMovie("show1", Movie.REGULAR), 3));
-            customer.AddRental(new Rental(new RegularMovie("show2", Movie.REGULAR), 3));
+            customer.AddRental(new Rental(new RegularMovie("show1"), 3));
+            customer.AddRental(new Rental(new RegularMovie("show2"), 3));
             AssertStatement(new[] {"show1", "show2"}, new[] {3.5f, 3.5f}, 7.0f, 2);
         }
 
         [Test]
         public void StatementTwoChildMoviesFourDays()
         {
-            customer.AddRental(new Rental(new ChildrenMovie("show1", Movie.CHILDRENS), 4));
-            customer.AddRental(new Rental(new ChildrenMovie("show2", Movie.CHILDRENS), 4));
+            customer.AddRental(new Rental(new ChildrenMovie("show1"), 4));
+            customer.AddRental(new Rental(new ChildrenMovie("show2"), 4));
             AssertStatement(new[] {"show1", "show2"}, new[] {3f, 3f}, 6.0f, 2);
         }
 
@@ -118,8 +118,8 @@ namespace Tests
         public void StatementAllThreeTypesMoviesFourDays()
         {
             customer.AddRental(new Rental(new NewReleaseMovie("show1"), 4));
-            customer.AddRental(new Rental(new RegularMovie("show2", Movie.REGULAR), 4));
-            customer.AddRental(new Rental(new ChildrenMovie("show3", Movie.CHILDRENS), 4));
+            customer.AddRental(new Rental(new RegularMovie("show2"), 4));
+            customer.AddRental(new Rental(new ChildrenMovie("show3"), 4));
             AssertStatement(new[] {"show1" + " (New)", "show2", "show3"}, new[] {12f, 5f, 3f}, 20f, 4);
         }
 

@@ -13,7 +13,7 @@ namespace Tests
 		[SetUp]
 		public void Init() 
 		{
-			movie = new RegularMovie(MOVIE_TITLE, Movie.REGULAR);
+			movie = new RegularMovie(MOVIE_TITLE);
 		}
   
 		[Test]

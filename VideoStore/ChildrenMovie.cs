@@ -4,7 +4,7 @@
     {
         public override int PriceCode => CHILDRENS;
 
-        public ChildrenMovie(string title, int priceCode) : base(title)
+        public ChildrenMovie(string title) : base(title)
         {
         }
 
