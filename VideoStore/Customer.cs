@@ -28,7 +28,7 @@ namespace VideoStore
             foreach (var each in rentals)
             {
                 var thisAmount = each.Cost;
-                frequentRenterPoints += GetFrequentRentalPoints(each);
+                frequentRenterPoints += each.FrequentRentalPoints;
 
                 result += $"\t{each.Movie.Title}\t{thisAmount}\n";
                 totalAmount += thisAmount;
@@ -39,13 +39,6 @@ namespace VideoStore
             result += $"You earned {frequentRenterPoints} frequent renter points";
 
             return result;
-        }
-
-        private int GetFrequentRentalPoints(Rental rental)
-        {
-            var isNewFilm = rental.Movie.PriceCode == Movie.NEW_RELEASE && rental.DaysRented > 1;
-
-            return isNewFilm ? 2 : 1;
         }
     }
 }

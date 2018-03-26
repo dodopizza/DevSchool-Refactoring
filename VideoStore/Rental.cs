@@ -48,5 +48,15 @@ namespace VideoStore
 				return thisAmount;
 			}
 		}
+
+		public int FrequentRentalPoints
+		{
+			get
+			{
+				var isNewFilm = Movie.PriceCode == Movie.NEW_RELEASE && DaysRented > 1;
+
+				return isNewFilm ? 2 : 1;
+			}
+		}
 	}
 }
