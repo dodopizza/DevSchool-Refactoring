@@ -37,7 +37,7 @@ namespace VideoStore
 					frequentRenterPoints++;
 				}
 
-				result += ("\t" + each.Movie.Title + "\t" + thisAmount + "\n");
+				result += "\t" + each.Movie.Title + "\t" + thisAmount + "\n";
 				totalAmount += thisAmount;
 			}
 
