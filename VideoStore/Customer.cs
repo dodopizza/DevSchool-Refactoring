@@ -36,14 +36,7 @@ namespace VideoStore
 
         private int TotalFrequentRenterPoints()
         {
-            var frequentRenterPoints = 0;
-
-            foreach (var rental in rentals)
-            {
-                frequentRenterPoints += rental.FrequentRenterPoints;
-            }
-
-            return frequentRenterPoints;
+            return rentals.Sum(_ => _.FrequentRenterPoints);
         }
 
         private double GetTotalCost()
