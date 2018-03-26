@@ -10,23 +10,21 @@ namespace VideoStore
         private string title;
         private int priceCode;
 
-        public Movie(string title, int priceCode)
+        public Movie(string title)
         {
             this.title = title;
-            this.priceCode = priceCode;
         }
 
-        public int PriceCode
+        public virtual int PriceCode
         {
             get { return priceCode; }
-            set { priceCode = value; }
         }
 
         public String Title
         {
             get
             {
-                if (priceCode == 1)
+                if (PriceCode == 1)
                     return title + " (New)";
                 return title;
             }

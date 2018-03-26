@@ -2,13 +2,10 @@
 {
     public class NewReleaseMovie : Movie
     {
-        public NewReleaseMovie(string title, int priceCode) : base(title, priceCode)
-        {
-        }
+        public override int PriceCode => NEW_RELEASE;
 
-        public int PriceCode
+        public NewReleaseMovie(string title, int priceCode) : base(title)
         {
-            get { return NEW_RELEASE; }
         }
 
         public override double CostFor(int daysRented)

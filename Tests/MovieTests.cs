@@ -22,14 +22,7 @@ namespace Tests
 			Assert.AreEqual(Movie.REGULAR, movie.PriceCode);
 		}
   
-		[Test]
-		public void SetPriceCode() 
-		{
-			movie.PriceCode = Movie.CHILDRENS;
 
-			Assert.AreEqual(Movie.CHILDRENS, movie.PriceCode);
-		}
-  
 		[Test]
 		public void GetTitle() 
 		{

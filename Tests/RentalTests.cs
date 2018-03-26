@@ -12,7 +12,7 @@ namespace Tests
 		[SetUp]
 		public void Init() 
 		{
-			movie = new Movie("some movie", Movie.CHILDRENS);
+			movie = new ChildrenMovie("some movie", Movie.CHILDRENS);
 			rental = new Rental(movie, 1);
 		}
 

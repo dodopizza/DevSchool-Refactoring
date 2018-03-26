@@ -2,13 +2,10 @@
 {
     public class RegularMovie : Movie
     {
-        public RegularMovie(string title, int priceCode) : base(title, priceCode)
-        {
-        }
+        public override int PriceCode => REGULAR;
 
-        public int PriceCode
+        public RegularMovie(string title, int priceCode) : base(title)
         {
-            get { return REGULAR; }
         }
 
         public override double CostFor(int daysRented)
