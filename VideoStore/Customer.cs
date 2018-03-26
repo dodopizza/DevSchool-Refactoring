@@ -23,20 +23,20 @@ namespace VideoStore
             double totalAmount = 0;
             var frequentRenterPoints = 0;
 
-            var result = "Rental Record for " + Name + "\n";
+            var result = $"Rental Record for {Name}\n";
 
             foreach (var each in rentals)
             {
                 var thisAmount = GetRentalCost(each);
                 frequentRenterPoints += GetFrequentRentalPoints(each);
 
-                result += "\t" + each.Movie.Title + "\t" + thisAmount + "\n";
+                result += $"\t{each.Movie.Title}\t{thisAmount}\n";
                 totalAmount += thisAmount;
             }
 
 
-            result += "Amount owed is " + totalAmount + "\n";
-            result += "You earned " + frequentRenterPoints + " frequent renter points";
+            result += $"Amount owed is {totalAmount}\n";
+            result += $"You earned {frequentRenterPoints} frequent renter points";
 
             return result;
         }
