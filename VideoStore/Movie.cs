@@ -7,30 +7,17 @@ namespace VideoStore
 		public const int CHILDRENS = 2;
 		public const int REGULAR = 0;
 		public const int NEW_RELEASE = 1;
-		private string _title;
-		private int _priceCode;
+		private readonly string title;
 
 		public Movie(string title, int priceCode) 
 		{
-			_title = title;
-			_priceCode = priceCode;
+			this.title = title;
+			PriceCode = priceCode;
 		}
 
-	    public int PriceCode
-	    {
-            get { return _priceCode; }
-            set { _priceCode = value; }
-	    }
+	    public int PriceCode { get; set; }
 
-		public String Title 
-		{
-            get {
-                if (_priceCode == 1)
-                return _title + " (New)";
-                return _title;
-            }
-			
-		}
+		public string Title => PriceCode == NEW_RELEASE ? title + " (New)" : title;
 
 		public virtual double GetCost(int daysRented)
 		{
@@ -38,9 +25,6 @@ namespace VideoStore
 			{
 				case NEW_RELEASE:
 					return daysRented * 3;
-
-				case CHILDRENS:
-					return daysRented > 3 ? (daysRented - 2) * 1.5 : 1.5;
 				default:
 					throw new InvalidOperationException();
 			}

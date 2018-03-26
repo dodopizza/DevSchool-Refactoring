@@ -107,6 +107,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChildrensMovie.cs" />
     <Compile Include="Customer.cs">
       <SubType>Code</SubType>
     </Compile>
