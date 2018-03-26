@@ -50,5 +50,16 @@ namespace VideoStore
 			return thisAmount;
 		}
 		
+		public int GetPointsForRenter()
+		{
+			if (Movie.PriceCode == Movie.NEW_RELEASE && DaysRented > 1)
+			{
+				return 2;
+			}
+
+			return 1;
+		}
+
+		
 	}
 }
