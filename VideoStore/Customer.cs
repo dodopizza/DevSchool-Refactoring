@@ -11,7 +11,7 @@ namespace VideoStore
 
 		public Customer(string name) 
 		{
-			this._name = name;
+			_name = name;
 		}
 
 		public void AddRental(Rental arg) 
@@ -19,40 +19,32 @@ namespace VideoStore
 			_rentals.Add(arg);
 		}
 
-		public string Name
-		{
-			get
-			{
-				return _name;
-			}
-		}
+		public string Name => _name;
 
 		public string Statement() 
 		{
 			double totalAmount = 0;
-			int frequentRenterPoints = 0;
+			var frequentRenterPoints = 0;
 
-			// Select every inside of the parantheses and extract to method called CreateHeader
-			string result = "Rental Record for " + Name + "\n";
+			var result = "Rental Record for " + Name + "\n";
 
-			foreach (Rental each in _rentals)
+			foreach (var each in _rentals)
 			{
-				double thisAmount = GetRentalCost(each);
+				var thisAmount = GetRentalCost(each);
 				frequentRenterPoints++;
 
-				if ((each.Movie.PriceCode == Movie.NEW_RELEASE)
-					&& (each.DaysRented > 1)) 
+				if (each.Movie.PriceCode == Movie.NEW_RELEASE && each.DaysRented > 1) 
 				{
 					frequentRenterPoints++;
 				}
 
-				result += ("\t" + each.Movie.Title + "\t" + thisAmount.ToString() + "\n");
+				result += "\t" + each.Movie.Title + "\t" + thisAmount + "\n";
 				totalAmount += thisAmount;
 			}
 
 
-			result += ("Amount owed is " + totalAmount.ToString() + "\n");
-			result += ("You earned " + frequentRenterPoints.ToString() + " frequent renter points");
+			result += "Amount owed is " + totalAmount + "\n";
+			result += "You earned " + frequentRenterPoints + " frequent renter points";
 
 			return result;
 		}
