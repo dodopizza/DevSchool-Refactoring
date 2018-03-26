@@ -10,7 +10,7 @@ namespace VideoStore
 
 		public Customer(string name) 
 		{
-			this.Name = name;
+			Name = name;
 		}
 
 		public void AddRental(Rental arg) 
@@ -29,35 +29,8 @@ namespace VideoStore
 
 			foreach (Rental each in rentals)
 			{
-				double thisAmount = 0;
+				double thisAmount = GetRentalCost(each);
 
-				switch (each.Movie.PriceCode)
-				{
-					case Movie.REGULAR:
-						thisAmount += 2;
-
-						if (each.DaysRented > 2) 
-						{
-							thisAmount += ((each.DaysRented - 2) * 1.5);
-						}
-
-						break;
-
-					case Movie.NEW_RELEASE:
-						thisAmount += (each.DaysRented * 3);
-
-						break;
-
-					case Movie.CHILDRENS:
-						thisAmount += 1.5;
-
-						if (each.DaysRented > 3) 
-						{
-							thisAmount += ((each.DaysRented - 3) * 1.5);
-						}
-
-						break;
-				}
 				frequentRenterPoints++;
 
 				if ((each.Movie.PriceCode == Movie.NEW_RELEASE)
@@ -75,6 +48,41 @@ namespace VideoStore
 			result += ("You earned " + frequentRenterPoints + " frequent renter points");
 
 			return result;
+		}
+
+		private double GetRentalCost(Rental rental)
+		{
+			double thisAmount = 0;
+
+			switch (rental.Movie.PriceCode)
+			{
+				case Movie.REGULAR:
+					thisAmount += 2;
+
+					if (rental.DaysRented > 2)
+					{
+						thisAmount += ((rental.DaysRented - 2) * 1.5);
+					}
+
+					break;
+
+				case Movie.NEW_RELEASE:
+					thisAmount += (rental.DaysRented * 3);
+
+					break;
+
+				case Movie.CHILDRENS:
+					thisAmount += 1.5;
+
+					if (rental.DaysRented > 3)
+					{
+						thisAmount += ((rental.DaysRented - 3) * 1.5);
+					}
+
+					break;
+			}
+
+			return thisAmount;
 		}
 	}
 }
