@@ -12,8 +12,8 @@ namespace VideoStore
 
 		public Movie(string title, int priceCode) 
 		{
-			this._title = title;
-			this._priceCode = priceCode;
+			_title = title;
+			_priceCode = priceCode;
 		}
 
 	    public int PriceCode
@@ -30,6 +30,20 @@ namespace VideoStore
                 return _title;
             }
 			
+		}
+
+		public virtual double GetCost(int daysRented)
+		{
+			switch (PriceCode) 
+			{
+				case NEW_RELEASE:
+					return daysRented * 3;
+
+				case CHILDRENS:
+					return daysRented > 3 ? (daysRented - 2) * 1.5 : 1.5;
+				default:
+					throw new InvalidOperationException();
+			}
 		}
 	}
 }
