@@ -1,5 +1,3 @@
-using System;
-
 namespace VideoStore
 {
     public class Rental
@@ -22,7 +20,7 @@ namespace VideoStore
 
         public int GetPointsForRenter()
         {
-            return Movie is NewMovie && DaysRented > 1 ? 2 : 1;
+            return Movie.GetPointsForRenter(DaysRented);
         }
     }
 }

@@ -10,5 +10,10 @@ namespace VideoStore
         {
             return daysRented * 3;
         }
+
+        public override int GetPointsForRenter(int daysRented)
+        {
+            return daysRented > 1 ? 2 : base.GetPointsForRenter(daysRented);
+        }
     }
 }
