@@ -32,23 +32,11 @@ namespace VideoStore
 					case Movie.NEW_RELEASE:
 						return Movie.CostFor(DaysRented);
 					case Movie.CHILDRENS:
-						return ChildrenMovieCost();
+						return Movie.CostFor(DaysRented);
 					default:
 						return 0;
 				}
 			}
-		}
-
-		private double ChildrenMovieCost()
-		{
-			double thisAmount = 1.5;
-
-			if (DaysRented > 3)
-			{
-				thisAmount += (DaysRented - 3) * 1.5;
-			}
-
-			return thisAmount;
 		}
 	}
 }
