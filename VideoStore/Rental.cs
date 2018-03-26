@@ -5,6 +5,8 @@ namespace VideoStore
 		public int DaysRented { get; }
 		public Movie Movie { get; }
 
+		public double Cost => Movie.CostFor(DaysRented);
+
 		public Rental(Movie movie, int daysRented)
 		{
 			Movie = movie;
@@ -18,24 +20,6 @@ namespace VideoStore
 				var isNewFilm = Movie.PriceCode == Movie.NEW_RELEASE && DaysRented > 1;
 
 				return isNewFilm ? 2 : 1;
-			}
-		}
-
-		public double Cost
-		{
-			get
-			{
-				switch (Movie.PriceCode)
-				{
-					case Movie.REGULAR:
-						return Movie.CostFor(DaysRented);
-					case Movie.NEW_RELEASE:
-						return Movie.CostFor(DaysRented);
-					case Movie.CHILDRENS:
-						return Movie.CostFor(DaysRented);
-					default:
-						return 0;
-				}
 			}
 		}
 	}
