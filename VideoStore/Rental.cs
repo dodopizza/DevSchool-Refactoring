@@ -30,7 +30,7 @@ namespace VideoStore
 					case Movie.REGULAR:
 						return Movie.CostFor(DaysRented);
 					case Movie.NEW_RELEASE:
-						return NewReleaseCost();
+						return Movie.CostFor(DaysRented);
 					case Movie.CHILDRENS:
 						return ChildrenMovieCost();
 					default:
@@ -49,23 +49,6 @@ namespace VideoStore
 			}
 
 			return thisAmount;
-		}
-
-		private double RegularMovieCost()
-		{
-			double thisAmount = 2;
-
-			if (DaysRented > 2)
-			{
-				thisAmount += (DaysRented - 2) * 1.5;
-			}
-
-			return thisAmount;
-		}
-
-		private double NewReleaseCost()
-		{
-			return DaysRented * 3;
 		}
 	}
 }

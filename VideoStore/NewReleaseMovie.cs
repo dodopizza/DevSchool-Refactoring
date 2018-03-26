@@ -10,5 +10,10 @@
         {
             get { return NEW_RELEASE; }
         }
+
+        public override double CostFor(int daysRented)
+        {
+            return daysRented * 3;
+        }
     }
 }
