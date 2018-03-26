@@ -2,85 +2,91 @@ using System.Collections.Generic;
 
 namespace VideoStore
 {
-	public class Customer 
-	{
-		private readonly List<Rental> rentals = new List<Rental>();
+    public class Customer
+    {
+        private readonly List<Rental> rentals = new List<Rental>();
 
-		public string Name { get; }
+        public string Name { get; }
 
-		public Customer(string name)
-		{
-			Name = name;
-		}
+        public Customer(string name)
+        {
+            Name = name;
+        }
 
-		public void AddRental(Rental arg)
-		{
-			rentals.Add(arg);
-		}
+        public void AddRental(Rental arg)
+        {
+            rentals.Add(arg);
+        }
 
-		public string Statement() 
-		{
-			double totalAmount = 0;
-			var frequentRenterPoints = 0;
+        public string Statement()
+        {
+            double totalAmount = 0;
+            var frequentRenterPoints = 0;
 
-			var result = "Rental Record for " + Name + "\n";
+            var result = "Rental Record for " + Name + "\n";
 
-			foreach (var each in rentals)
-			{
-				var thisAmount = GetRentalCost(each);
+            foreach (var each in rentals)
+            {
+                var thisAmount = GetRentalCost(each);
+                frequentRenterPoints += GetFrequentRentalPoints(each);
 
-				frequentRenterPoints++;
-
-				if (each.Movie.PriceCode == Movie.NEW_RELEASE
-					&& each.DaysRented > 1)
-				{
-					frequentRenterPoints++;
-				}
-
-				result += "\t" + each.Movie.Title + "\t" + thisAmount + "\n";
-				totalAmount += thisAmount;
-			}
+                result += "\t" + each.Movie.Title + "\t" + thisAmount + "\n";
+                totalAmount += thisAmount;
+            }
 
 
-			result += "Amount owed is " + totalAmount + "\n";
-			result += "You earned " + frequentRenterPoints + " frequent renter points";
+            result += "Amount owed is " + totalAmount + "\n";
+            result += "You earned " + frequentRenterPoints + " frequent renter points";
 
-			return result;
-		}
+            return result;
+        }
 
-		private double GetRentalCost(Rental rental)
-		{
-			double thisAmount = 0;
+        private int GetFrequentRentalPoints(Rental rental)
+        {
+            var frequentRenterPoints = 1;
 
-			switch (rental.Movie.PriceCode)
-			{
-				case Movie.REGULAR:
-					thisAmount += 2;
+            if (rental.Movie.PriceCode == Movie.NEW_RELEASE
+                && rental.DaysRented > 1)
+            {
+                frequentRenterPoints++;
+            }
 
-					if (rental.DaysRented > 2)
-					{
-						thisAmount += (rental.DaysRented - 2) * 1.5;
-					}
+            return frequentRenterPoints;
+        }
 
-					break;
+        private double GetRentalCost(Rental rental)
+        {
+            double thisAmount = 0;
 
-				case Movie.NEW_RELEASE:
-					thisAmount += rental.DaysRented * 3;
+            switch (rental.Movie.PriceCode)
+            {
+                case Movie.REGULAR:
+                    thisAmount += 2;
 
-					break;
+                    if (rental.DaysRented > 2)
+                    {
+                        thisAmount += (rental.DaysRented - 2) * 1.5;
+                    }
 
-				case Movie.CHILDRENS:
-					thisAmount += 1.5;
+                    break;
 
-					if (rental.DaysRented > 3)
-					{
-						thisAmount += (rental.DaysRented - 3) * 1.5;
-					}
+                case Movie.NEW_RELEASE:
+                    thisAmount += rental.DaysRented * 3;
 
-					break;
-			}
+                    break;
 
-			return thisAmount;
-		}
-	}
+                case Movie.CHILDRENS:
+                    thisAmount += 1.5;
+
+                    if (rental.DaysRented > 3)
+                    {
+                        thisAmount += (rental.DaysRented - 3) * 1.5;
+                    }
+
+                    break;
+            }
+
+            return thisAmount;
+        }
+    }
 }
