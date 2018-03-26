@@ -11,7 +11,7 @@ namespace VideoStore
 			DaysRented = daysRented;
 		}
 
-		public int FrequentRentalPoints
+		public int FrequentRenterPoints
 		{
 			get
 			{

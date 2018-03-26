@@ -25,12 +25,12 @@ namespace VideoStore
 
             var result = $"Rental Record for {Name}\n";
 
-            foreach (var each in rentals)
+            foreach (var rental in rentals)
             {
-                var thisAmount = each.Cost;
-                frequentRenterPoints += each.FrequentRentalPoints;
+                var thisAmount = rental.Cost;
+                frequentRenterPoints += rental.FrequentRenterPoints;
 
-                result += $"\t{each.Movie.Title}\t{thisAmount}\n";
+                result += $"\t{rental.Movie.Title}\t{thisAmount}\n";
                 totalAmount += thisAmount;
             }
 
