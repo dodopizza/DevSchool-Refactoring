@@ -1,26 +1,18 @@
-using System;
-
 namespace VideoStore
 {
-	public class Rental 
-	{
-		private Movie _movie;
-		private int _daysRented;
+    public class Rental
+    {
+        public int DaysRented { get; }
+        public Movie Movie { get; }
 
-		public Rental(Movie movie, int daysRented) 
-		{
-			this._movie = movie;
-			this._daysRented = daysRented;
-		}
+        public Rental(Movie movie, int daysRented)
+        {
+            Movie = movie;
+            DaysRented = daysRented;
+        }
 
-		public int DaysRented
-		{
-            get{ return _daysRented; }
-		}
+        public double Cost => Movie.GetCost(DaysRented);
 
-		public Movie Movie
-		{
-            get { return _movie; }
-		}
-	}
+        public int FrequentRenterPoints => Movie.GetFrequentRenterPoints(DaysRented);
+    }
 }
