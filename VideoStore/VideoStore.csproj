@@ -114,6 +114,7 @@
     <Compile Include="Movie.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="NewMovie.cs" />
     <Compile Include="RegularMovie.cs" />
     <Compile Include="Rental.cs">
       <SubType>Code</SubType>
