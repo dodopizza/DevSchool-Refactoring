@@ -21,24 +21,32 @@ namespace VideoStore
         public string Statement()
         {
             double totalAmount = 0;
-            var frequentRenterPoints = 0;
 
             var result = $"Rental Record for {Name}\n";
 
             foreach (var rental in rentals)
             {
-                var thisAmount = rental.Cost;
-                frequentRenterPoints += rental.FrequentRenterPoints;
-
-                result += $"\t{rental.Movie.Title}\t{thisAmount}\n";
-                totalAmount += thisAmount;
+                result += $"\t{rental.Movie.Title}\t{rental.Cost}\n";
+                totalAmount += rental.Cost;
             }
 
 
             result += $"Amount owed is {totalAmount}\n";
-            result += $"You earned {frequentRenterPoints} frequent renter points";
+            result += $"You earned {TotalFrequentRenterPoints()} frequent renter points";
 
             return result;
+        }
+
+        private int TotalFrequentRenterPoints()
+        {
+            var frequentRenterPoints = 0;
+
+            foreach (var rental in rentals)
+            {
+                frequentRenterPoints += rental.FrequentRenterPoints;
+            }
+
+            return frequentRenterPoints;
         }
     }
 }
