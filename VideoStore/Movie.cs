@@ -31,5 +31,10 @@ namespace VideoStore
                 return title;
             }
         }
+
+        public virtual double CostFor(int daysRented)
+        {
+            return 0;
+        }
     }
 }

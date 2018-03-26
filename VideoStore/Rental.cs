@@ -28,7 +28,7 @@ namespace VideoStore
 				switch (Movie.PriceCode)
 				{
 					case Movie.REGULAR:
-						return RegularMovieCost();
+						return Movie.CostFor(DaysRented);
 					case Movie.NEW_RELEASE:
 						return NewReleaseCost();
 					case Movie.CHILDRENS:
