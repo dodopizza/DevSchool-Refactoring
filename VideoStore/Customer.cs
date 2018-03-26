@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace VideoStore
@@ -8,17 +6,17 @@ namespace VideoStore
 	{
 		private readonly List<Rental> rentals = new List<Rental>();
 
-		public Customer(string name) 
+		public string Name { get; }
+
+		public Customer(string name)
 		{
 			Name = name;
 		}
 
-		public void AddRental(Rental arg) 
+		public void AddRental(Rental arg)
 		{
 			rentals.Add(arg);
 		}
-
-		public string Name { get; }
 
 		public string Statement() 
 		{
@@ -27,14 +25,14 @@ namespace VideoStore
 
 			var result = "Rental Record for " + Name + "\n";
 
-			foreach (Rental each in rentals)
+			foreach (var each in rentals)
 			{
 				var thisAmount = GetRentalCost(each);
 
 				frequentRenterPoints++;
 
-				if ((each.Movie.PriceCode == Movie.NEW_RELEASE)
-					&& (each.DaysRented > 1)) 
+				if (each.Movie.PriceCode == Movie.NEW_RELEASE
+					&& each.DaysRented > 1)
 				{
 					frequentRenterPoints++;
 				}
