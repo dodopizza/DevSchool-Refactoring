@@ -30,21 +30,21 @@ namespace Tests
         [Test]
         public void StatementOneNewMovieOneDay()
         {
-            customer.AddRental(new Rental(new NewReleaseMovie("show1", Movie.NEW_RELEASE), 1));
+            customer.AddRental(new Rental(new NewReleaseMovie("show1"), 1));
             AssertStatement("show1" + " (New)", 3.0f, 3.0f, 1);
         }
 
         [Test]
         public void StatementOneNewMovieTwoDay()
         {
-            customer.AddRental(new Rental(new NewReleaseMovie("show1", Movie.NEW_RELEASE), 2));
+            customer.AddRental(new Rental(new NewReleaseMovie("show1"), 2));
             AssertStatement("show1" + " (New)", 6.0f, 6.0f, 2);
         }
 
         [Test]
         public void StatementOneNewMovieThreeDays()
         {
-            customer.AddRental(new Rental(new NewReleaseMovie("show1", Movie.NEW_RELEASE), 3));
+            customer.AddRental(new Rental(new NewReleaseMovie("show1"), 3));
             AssertStatement("show1" + " (New)", 9.0f, 9.0f, 2);
         }
 
@@ -93,8 +93,8 @@ namespace Tests
         [Test]
         public void StatementTwoNewMoviesThreeDays()
         {
-            customer.AddRental(new Rental(new NewReleaseMovie("show1", Movie.NEW_RELEASE), 3));
-            customer.AddRental(new Rental(new NewReleaseMovie("show2", Movie.NEW_RELEASE), 3));
+            customer.AddRental(new Rental(new NewReleaseMovie("show1"), 3));
+            customer.AddRental(new Rental(new NewReleaseMovie("show2"), 3));
             AssertStatement(new[] {"show1" + " (New)", "show2" + " (New)"}, new[] {9f, 9f}, 18f, 4);
         }
 
@@ -117,7 +117,7 @@ namespace Tests
         [Test]
         public void StatementAllThreeTypesMoviesFourDays()
         {
-            customer.AddRental(new Rental(new NewReleaseMovie("show1", Movie.NEW_RELEASE), 4));
+            customer.AddRental(new Rental(new NewReleaseMovie("show1"), 4));
             customer.AddRental(new Rental(new RegularMovie("show2", Movie.REGULAR), 4));
             customer.AddRental(new Rental(new ChildrenMovie("show3", Movie.CHILDRENS), 4));
             AssertStatement(new[] {"show1" + " (New)", "show2", "show3"}, new[] {12f, 5f, 3f}, 20f, 4);
