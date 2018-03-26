@@ -11,6 +11,16 @@ namespace VideoStore
 			DaysRented = daysRented;
 		}
 
+		public int FrequentRentalPoints
+		{
+			get
+			{
+				var isNewFilm = Movie.PriceCode == Movie.NEW_RELEASE && DaysRented > 1;
+
+				return isNewFilm ? 2 : 1;
+			}
+		}
+
 		public double Cost
 		{
 			get
@@ -46,16 +56,6 @@ namespace VideoStore
 				}
 
 				return thisAmount;
-			}
-		}
-
-		public int FrequentRentalPoints
-		{
-			get
-			{
-				var isNewFilm = Movie.PriceCode == Movie.NEW_RELEASE && DaysRented > 1;
-
-				return isNewFilm ? 2 : 1;
 			}
 		}
 	}
