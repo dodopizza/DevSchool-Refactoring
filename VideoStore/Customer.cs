@@ -21,7 +21,7 @@ namespace VideoStore
 
 		public string Statement() 
 		{
-			return string.Concat(
+			return string.Join("\n",
 				GetStatementHeader(),
 				GetRentalLines(),
 				GetOwedLine(),
@@ -30,7 +30,7 @@ namespace VideoStore
 
 		private string GetRentalLines()
 		{
-			return string.Concat(rentals.Select(GetRentalLine));
+			return string.Join("\n", rentals.Select(GetRentalLine));
 		}
 
 		private string GetPointsLine()
@@ -40,17 +40,17 @@ namespace VideoStore
 
 		private string GetOwedLine()
 		{
-			return "Amount owed is " + GetTotalRentalCost() + "\n";
+			return "Amount owed is " + GetTotalRentalCost();
 		}
 
 		private string GetStatementHeader()
 		{
-			return "Rental Record for " + Name + "\n";
+			return "Rental Record for " + Name;
 		}
 
 		private static string GetRentalLine(Rental rental)
 		{
-			return "\t" + rental.Movie.Title + "\t" + rental.GetRentalCost() + "\n";
+			return "\t" + rental.Movie.Title + "\t" + rental.GetRentalCost();
 		}
 
 		private int GetTotalRenterPoints()
