@@ -35,22 +35,22 @@ namespace VideoStore
 
 		private string GetPointsLine()
 		{
-			return "You earned " + GetTotalRenterPoints() + " frequent renter points";
+			return $"You earned {GetTotalRenterPoints()} frequent renter points";
 		}
 
 		private string GetOwedLine()
 		{
-			return "Amount owed is " + GetTotalRentalCost();
+			return $"Amount owed is {GetTotalRentalCost()}";
 		}
 
 		private string GetStatementHeader()
 		{
-			return "Rental Record for " + Name;
+			return $"Rental Record for {Name}";
 		}
 
 		private static string GetRentalLine(Rental rental)
 		{
-			return "\t" + rental.Movie.Title + "\t" + rental.GetRentalCost();
+			return $"\t{rental.Movie.Title}\t{rental.GetRentalCost()}";
 		}
 
 		private int GetTotalRenterPoints()
