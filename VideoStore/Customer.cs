@@ -23,11 +23,8 @@ namespace VideoStore
 		{
 			var result = "Rental Record for " + Name + "\n";
 
-			foreach (var rental in rentals)
-			{
-				result += "\t" + rental.Movie.Title + "\t" + rental.GetRentalCost() + "\n";
-			}
-
+			var resultStrings = rentals.Select(rental => "\t" + rental.Movie.Title + "\t" + rental.GetRentalCost() + "\n");
+			result += string.Concat(resultStrings);
 
 			result += "Amount owed is " + GetTotalRentalCost() + "\n";
 			result += "You earned " + GetTotalRenterPoints() + " frequent renter points";
