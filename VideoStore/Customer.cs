@@ -21,15 +21,36 @@ namespace VideoStore
 
 		public string Statement() 
 		{
-			var result = "Rental Record for " + Name + "\n";
+			return string.Concat(
+				GetStatementHeader(),
+				GetRentalLines(),
+				GetOwedLine(),
+				GetPointsLine());
+		}
 
-			var resultStrings = rentals.Select(rental => "\t" + rental.Movie.Title + "\t" + rental.GetRentalCost() + "\n");
-			result += string.Concat(resultStrings);
+		private string GetRentalLines()
+		{
+			return string.Concat(rentals.Select(GetRentalLine));
+		}
 
-			result += "Amount owed is " + GetTotalRentalCost() + "\n";
-			result += "You earned " + GetTotalRenterPoints() + " frequent renter points";
+		private string GetPointsLine()
+		{
+			return "You earned " + GetTotalRenterPoints() + " frequent renter points";
+		}
 
-			return result;
+		private string GetOwedLine()
+		{
+			return "Amount owed is " + GetTotalRentalCost() + "\n";
+		}
+
+		private string GetStatementHeader()
+		{
+			return "Rental Record for " + Name + "\n";
+		}
+
+		private static string GetRentalLine(Rental rental)
+		{
+			return "\t" + rental.Movie.Title + "\t" + rental.GetRentalCost() + "\n";
 		}
 
 		private int GetTotalRenterPoints()
