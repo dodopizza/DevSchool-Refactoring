@@ -1,39 +1,36 @@
-using System;
-using NUnit.Framework;
 using VideoStore;
+using Xunit;
 
 namespace Tests
 {
-	[TestFixture]
-	public class MovieTests 
+	public class MovieTests
 	{
 		private const string MOVIE_TITLE = "some movie";
 		private Movie movie;
-  
-		[SetUp]
-		public void Init() 
+
+		public MovieTests()
 		{
-			movie = new Movie(MOVIE_TITLE, Movie.REGULAR);    
+			movie = new Movie(MOVIE_TITLE, Movie.REGULAR);
 		}
   
-		[Test]
+		[Fact]
 		public void GetPriceCode() 
 		{
-			Assert.AreEqual(Movie.REGULAR, movie.PriceCode);
+			Assert.Equal(Movie.REGULAR, movie.PriceCode);
 		}
   
-		[Test]
+		[Fact]
 		public void SetPriceCode() 
 		{
 			movie.PriceCode = Movie.CHILDRENS;
 
-			Assert.AreEqual(Movie.CHILDRENS, movie.PriceCode);
+			Assert.Equal(Movie.CHILDRENS, movie.PriceCode);
 		}
   
-		[Test]
+		[Fact]
 		public void GetTitle() 
 		{
-			Assert.AreEqual(MOVIE_TITLE, movie.Title);
+			Assert.Equal(MOVIE_TITLE, movie.Title);
 		}
 	}
 }

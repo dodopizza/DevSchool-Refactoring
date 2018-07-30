@@ -1,5 +1,3 @@
-using System;
-
 namespace VideoStore
 {
 	public class Rental 

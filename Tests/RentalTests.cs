@@ -1,31 +1,30 @@
-using NUnit.Framework;
 using VideoStore;
+using Xunit;
 
 namespace Tests
 {
-	[TestFixture]
 	public class RentalTests 
 	{
 		private Rental rental;
-		private Movie movie;  
-  
-		[SetUp]
-		public void Init() 
+		private Movie movie;
+
+		public RentalTests()
 		{
+			
 			movie = new Movie("some movie", Movie.CHILDRENS);
 			rental = new Rental(movie, 1);
 		}
 
-		[Test]
+		[Fact]
 		public void GetDaysRented() 
 		{
-			Assert.AreEqual(1, rental.DaysRented);
+			Assert.Equal(1, rental.DaysRented);
 		}
   
-		[Test]
+		[Fact]
 		public void GetMovie() 
 		{
-			Assert.AreEqual(movie, rental.Movie);
+			Assert.Equal(movie, rental.Movie);
 		}
 	}
 }

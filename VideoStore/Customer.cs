@@ -1,13 +1,11 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace VideoStore
 {
 	public class Customer 
 	{
-		private readonly string _name;
-		private readonly List<Rental> _rentals = new List<Rental>();
+		private string _name;
+		private List<Rental> _rentals = new List<Rental>();
 
 		public Customer(string name) 
 		{
