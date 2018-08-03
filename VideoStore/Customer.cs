@@ -30,13 +30,10 @@ namespace VideoStore
 			double totalAmount = 0;
 			int frequentRenterPoints = 0;
 
-			// Select every inside of the parantheses and extract to method called CreateHeader
 			string result = "Rental Record for " + Name + "\n";
 
 			foreach (Rental each in _rentals)
 			{
-				// Extract Method 
-				// Highlight all of the text below to the end of the switch statment
 				double thisAmount = 0;
 
 				//determine amounts for each line
@@ -68,8 +65,6 @@ namespace VideoStore
 						break;
 				}
 				// End of switch statement
-				// If you're using Resharper 2.0 keymap, press Ctrl-Alt-M
-				// If you're using Visual Studio keymap, press Ctrl+R,M
 
 				// add frequent renter points
 				frequentRenterPoints++;
@@ -82,7 +77,6 @@ namespace VideoStore
 				}
 
 				//show figures for this rental
-				// Select every inside of the parantheses and extract to method called CreateLine
 				result += ("\t" + each.Movie.Title + "\t" + thisAmount.ToString() + "\n");
 				totalAmount += thisAmount;
 			}
