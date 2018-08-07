@@ -27,7 +27,7 @@ namespace VideoStore
 
 			foreach (var rental in _rentals)
 			{
-				var thisAmount = AmountFor(rental);
+				var thisAmount = GetCostFor(rental);
 
 				frequentRenterPoints += FrequentRenterPointsFor(rental);
 
@@ -36,7 +36,7 @@ namespace VideoStore
 			}
 
 			result += ("Amount owed is " + totalAmount + "\n");
-			result += ("You earned " + frequentRenterPoints.ToString() + " frequent renter points");
+			result += ("You earned " + frequentRenterPoints + " frequent renter points");
 
 			return result;
 		}
@@ -53,7 +53,7 @@ namespace VideoStore
 			return frequentRenterPoints;
 		}
 
-		private static double AmountFor(Rental rental)
+		private static double GetCostFor(Rental rental)
 		{
 			double thisAmount = 0;
 
