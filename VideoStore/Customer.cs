@@ -30,13 +30,13 @@ namespace VideoStore
 				result += "\t" + rental.Movie.Title + "\t" + rental.GetCost() + "\n";
 			}
 
-			result += "Amount owed is " + GetTotalAmount() + "\n";
+			result += "Amount owed is " + GetTotalCost() + "\n";
 			result += "You earned " + frequentRenterPoints + " frequent renter points";
 
 			return result;
 		}
 
-		private double GetTotalAmount()
+		private double GetTotalCost()
 		{
 			double totalAmount = 0;
 			foreach (var rental in rentals)
