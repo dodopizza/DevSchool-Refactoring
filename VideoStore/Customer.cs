@@ -4,7 +4,7 @@ namespace VideoStore
 {
 	public class Customer 
 	{
-		private readonly List<Rental> _rentals = new List<Rental>();
+		private readonly List<Rental> rentals = new List<Rental>();
 
 		public Customer(string name) 
 		{
@@ -13,7 +13,7 @@ namespace VideoStore
 
 		public void AddRental(Rental arg) 
 		{
-			_rentals.Add(arg);
+			rentals.Add(arg);
 		}
 
 		public string Name { get; }
@@ -25,68 +25,20 @@ namespace VideoStore
 
 			var result = "Rental Record for " + Name + "\n";
 
-			foreach (var rental in _rentals)
+			foreach (var rental in rentals)
 			{
-				var rentalCost = GetCostFor(rental);
+				var rentalCost = rental.GetCost();
 
-				frequentRenterPoints += GetFrequentRenterPointsFor(rental);
+				frequentRenterPoints += rental.GetFrequentRenterPoints();
 
 				result += ("\t" + rental.Movie.Title + "\t" + rentalCost.ToString() + "\n");
 				totalAmount += rentalCost;
 			}
 
-			result += ("Amount owed is " + totalAmount.ToString() + "\n");
-			result += ("You earned " + frequentRenterPoints.ToString() + " frequent renter points");
+			result += "Amount owed is " + totalAmount.ToString() + "\n";
+			result += "You earned " + frequentRenterPoints.ToString() + " frequent renter points";
 
 			return result;
-		}
-
-		private static double GetCostFor(Rental rental)
-		{
-			double rentalCost = 0;
-
-			switch (rental.Movie.PriceCode)
-			{
-				case Movie.REGULAR:
-					rentalCost += 2;
-
-					if (rental.DaysRented > 2)
-					{
-						rentalCost += ((rental.DaysRented - 2) * 1.5);
-					}
-
-					break;
-
-				case Movie.NEW_RELEASE:
-					rentalCost += (rental.DaysRented * 3);
-
-					break;
-
-				case Movie.CHILDRENS:
-					rentalCost += 1.5;
-
-					if (rental.DaysRented > 3)
-					{
-						rentalCost += ((rental.DaysRented - 3) * 1.5);
-					}
-
-					break;
-			}
-
-			return rentalCost;
-		}
-
-		private int GetFrequentRenterPointsFor(Rental rental)
-		{
-			var frequentRenterPoints = 1;
-
-			if ((rental.Movie.PriceCode == Movie.NEW_RELEASE)
-			    && (rental.DaysRented > 1))
-			{
-				frequentRenterPoints++;
-			}
-
-			return frequentRenterPoints;
 		}
 	}
 }

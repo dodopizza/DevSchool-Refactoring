@@ -2,23 +2,61 @@ namespace VideoStore
 {
 	public class Rental 
 	{
-		private Movie _movie;
-		private int _daysRented;
-
 		public Rental(Movie movie, int daysRented) 
 		{
-			this._movie = movie;
-			this._daysRented = daysRented;
+			Movie = movie;
+			DaysRented = daysRented;
 		}
 
-		public int DaysRented
+		public int DaysRented { get; }
+
+		public Movie Movie { get; }
+
+		public double GetCost()
 		{
-            get{ return _daysRented; }
+			double rentalCost = 0;
+
+			switch (Movie.PriceCode)
+			{
+				case Movie.REGULAR:
+					rentalCost += 2;
+
+					if (DaysRented > 2)
+					{
+						rentalCost += ((DaysRented - 2) * 1.5);
+					}
+
+					break;
+
+				case Movie.NEW_RELEASE:
+					rentalCost += (DaysRented * 3);
+
+					break;
+
+				case Movie.CHILDRENS:
+					rentalCost += 1.5;
+
+					if (DaysRented > 3)
+					{
+						rentalCost += ((DaysRented - 3) * 1.5);
+					}
+
+					break;
+			}
+
+			return rentalCost;
 		}
 
-		public Movie Movie
+		public int GetFrequentRenterPoints()
 		{
-            get { return _movie; }
+			var frequentRenterPoints = 1;
+
+			if (Movie.PriceCode == Movie.NEW_RELEASE && DaysRented > 1)
+			{
+				frequentRenterPoints++;
+			}
+
+			return frequentRenterPoints;
 		}
 	}
 }
