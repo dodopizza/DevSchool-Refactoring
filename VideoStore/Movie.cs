@@ -32,22 +32,12 @@ namespace VideoStore
 			
 		}
 
-		public double GetCost(int daysRented)
+		public virtual double GetCost(int daysRented)
 		{
 			double rentalCost = 0;
 
 			switch (PriceCode)
 			{
-				case REGULAR:
-					rentalCost += 2;
-
-					if (daysRented > 2)
-					{
-						rentalCost += ((daysRented - 2) * 1.5);
-					}
-
-					break;
-
 				case NEW_RELEASE:
 					rentalCost += (daysRented * 3);
 
