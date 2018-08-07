@@ -18,9 +18,8 @@ namespace VideoStore
 			_rentals.Add(rental);
 		}
 
-		public string Statement() 
+		public string Statement()
 		{
-			var totalAmount = 0.0;
 			var frequentRenterPoints = 0;
 
 			var result = "Rental Record for " + Name + "\n";
@@ -32,14 +31,26 @@ namespace VideoStore
 				frequentRenterPoints += rental.GetFrequentRenterPoints();
 
 				result += ("\t" + rental.Movie.Title + "\t" + rentalCost.ToString() + "\n");
-				totalAmount += rentalCost;
 			}
 
 
-			result += ("Amount owed is " + totalAmount.ToString() + "\n");
+			result += ("Amount owed is " + GetTotalCost() + "\n");
 			result += ("You earned " + frequentRenterPoints.ToString() + " frequent renter points");
 
 			return result;
+		}
+
+		private double GetTotalCost()
+		{
+			var totalAmount = 0.0;
+
+			foreach (var rental in _rentals)
+			{
+				var rentalCost = rental.GetCost();
+				totalAmount += rentalCost;
+			}
+
+			return totalAmount;
 		}
 	}
 }
