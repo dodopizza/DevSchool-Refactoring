@@ -27,7 +27,7 @@ namespace VideoStore
 
 			foreach (var rental in _rentals)
 			{
-				var rentalCost = GetCostFor(rental);
+				var rentalCost = rental.GetCost();
 
 				frequentRenterPoints += GetFrequentRenterPointsFor(rental);
 
@@ -40,41 +40,6 @@ namespace VideoStore
 			result += ("You earned " + frequentRenterPoints.ToString() + " frequent renter points");
 
 			return result;
-		}
-
-		private static double GetCostFor(Rental rental)
-		{
-			double rentalCost = 0;
-
-			switch (rental.Movie.PriceCode)
-			{
-				case Movie.REGULAR:
-					rentalCost += 2;
-
-					if (rental.DaysRented > 2)
-					{
-						rentalCost += (rental.DaysRented - 2) * 1.5;
-					}
-
-					break;
-
-				case Movie.NEW_RELEASE:
-					rentalCost += rental.DaysRented * 3;
-
-					break;
-
-				case Movie.CHILDRENS:
-					rentalCost += 1.5;
-
-					if (rental.DaysRented > 3)
-					{
-						rentalCost += (rental.DaysRented - 3) * 1.5;
-					}
-
-					break;
-			}
-
-			return rentalCost;
 		}
 
 		private static int GetFrequentRenterPointsFor(Rental rental)
