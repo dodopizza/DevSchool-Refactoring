@@ -31,5 +31,41 @@ namespace VideoStore
             }
 			
 		}
+
+		public double GetCost(int daysRented)
+		{
+			double rentalCost = 0;
+
+			switch (PriceCode)
+			{
+				case REGULAR:
+					rentalCost += 2;
+
+					if (daysRented > 2)
+					{
+						rentalCost += ((daysRented - 2) * 1.5);
+					}
+
+					break;
+
+				case NEW_RELEASE:
+					rentalCost += (daysRented * 3);
+
+					break;
+
+				case CHILDRENS:
+					rentalCost += 1.5;
+
+					if (daysRented > 3)
+					{
+						rentalCost += ((daysRented - 3) * 1.5);
+					}
+
+					break;
+			}
+
+			return rentalCost;
+		}
+
 	}
 }

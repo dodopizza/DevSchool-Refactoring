@@ -14,37 +14,7 @@ namespace VideoStore
 
 		public double GetCost()
 		{
-			double rentalCost = 0;
-
-			switch (Movie.PriceCode)
-			{
-				case Movie.REGULAR:
-					rentalCost += 2;
-
-					if (DaysRented > 2)
-					{
-						rentalCost += ((DaysRented - 2) * 1.5);
-					}
-
-					break;
-
-				case Movie.NEW_RELEASE:
-					rentalCost += (DaysRented * 3);
-
-					break;
-
-				case Movie.CHILDRENS:
-					rentalCost += 1.5;
-
-					if (DaysRented > 3)
-					{
-						rentalCost += ((DaysRented - 3) * 1.5);
-					}
-
-					break;
-			}
-
-			return rentalCost;
+			return Movie.GetCost(DaysRented);
 		}
 
 		public int GetFrequentRenterPoints()
