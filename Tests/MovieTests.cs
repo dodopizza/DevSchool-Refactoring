@@ -10,21 +10,7 @@ namespace Tests
 
 		public MovieTests()
 		{
-			movie = new Movie(MOVIE_TITLE, Movie.REGULAR);
-		}
-  
-		[Fact]
-		public void GetPriceCode() 
-		{
-			Assert.Equal(Movie.REGULAR, movie.PriceCode);
-		}
-  
-		[Fact]
-		public void SetPriceCode() 
-		{
-			movie.PriceCode = Movie.CHILDRENS;
-
-			Assert.Equal(Movie.CHILDRENS, movie.PriceCode);
+			movie = new RegularMovie(MOVIE_TITLE);
 		}
   
 		[Fact]

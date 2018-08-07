@@ -23,47 +23,12 @@ namespace VideoStore
 
         public int GetFrequentRenterPoints()
         {
-            if ((Movie.PriceCode == Movie.NEW_RELEASE) && (DaysRented > 1))
-            {
-                return 2;
-            }
-
-            return 1;
+            return Movie.GetFrequentRenterPoint(DaysRented);
         }
 
         public double GetAmount()
         {
-            double thisAmount = 0;
-
-            switch (Movie.PriceCode)
-            {
-                case Movie.REGULAR:
-                    thisAmount += 2;
-
-                    if (DaysRented > 2)
-                    {
-                        thisAmount += ((DaysRented - 2) * 1.5);
-                    }
-
-                    break;
-
-                case Movie.NEW_RELEASE:
-                    thisAmount += (DaysRented * 3);
-
-                    break;
-
-                case Movie.CHILDRENS:
-                    thisAmount += 1.5;
-
-                    if (DaysRented > 3)
-                    {
-                        thisAmount += ((DaysRented - 3) * 1.5);
-                    }
-
-                    break;
-            }
-
-            return thisAmount;
+            return Movie.GetAmount(DaysRented);
         }
     }
 }
