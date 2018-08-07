@@ -8,8 +8,7 @@
 
         public override double GetCost(int daysRented)
         {
-            var rentalCost = 0d;
-            rentalCost += 2;
+            var rentalCost = 2d;
 
             if (daysRented > 2)
             {

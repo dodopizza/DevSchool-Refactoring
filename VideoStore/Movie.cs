@@ -38,11 +38,6 @@ namespace VideoStore
 
 			switch (PriceCode)
 			{
-				case NEW_RELEASE:
-					rentalCost += (daysRented * 3);
-
-					break;
-
 				case CHILDRENS:
 					rentalCost += 1.5;
 
