@@ -20,25 +20,41 @@ namespace VideoStore
 
 		public string Statement() 
 		{
-			double totalAmount = 0;
-			var frequentRenterPoints = 0;
-
 			var result = "Rental Record for " + Name + "\n";
 
 			foreach (var rental in _rentals)
 			{
 				var thisAmount = rental.GetCost();
-
-				frequentRenterPoints += rental.GetFrequentRenterPoints();
-
 				result += ("\t" + rental.Movie.Title + "\t" + thisAmount + "\n");
+			}
+
+			result += ("Amount owed is " + GetTotalAmount() + "\n");
+			result += ("You earned " + GetFrequentRenterPoints() + " frequent renter points");
+
+			return result;
+		}
+
+		private double GetTotalAmount()
+		{
+			double totalAmount = 0;
+			foreach (var rental in _rentals)
+			{
+				var thisAmount = rental.GetCost();
 				totalAmount += thisAmount;
 			}
 
-			result += ("Amount owed is " + totalAmount + "\n");
-			result += ("You earned " + frequentRenterPoints + " frequent renter points");
+			return totalAmount;
+		}
 
-			return result;
+		private double GetFrequentRenterPoints()
+		{
+			var frequentRenterPoints = 0;
+			foreach (var rental in _rentals)
+			{
+				frequentRenterPoints += rental.GetFrequentRenterPoints();
+			}
+
+			return frequentRenterPoints;
 		}
 	}
 }
