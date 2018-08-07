@@ -29,13 +29,7 @@ namespace VideoStore
 			{
 				var rentalCost = GetCostFor(rental);
 
-				frequentRenterPoints++;
-
-				if ((rental.Movie.PriceCode == Movie.NEW_RELEASE)
-					&& (rental.DaysRented > 1))
-				{
-					frequentRenterPoints++;
-				}
+				frequentRenterPoints += GetFrequentRenterPointsFor(rental);
 
 				result += ("\t" + rental.Movie.Title + "\t" + rentalCost.ToString() + "\n");
 				totalAmount += rentalCost;
@@ -82,5 +76,17 @@ namespace VideoStore
 			return rentalCost;
 		}
 
+		private int GetFrequentRenterPointsFor(Rental rental)
+		{
+			var frequentRenterPoints = 1;
+
+			if ((rental.Movie.PriceCode == Movie.NEW_RELEASE)
+			    && (rental.DaysRented > 1))
+			{
+				frequentRenterPoints++;
+			}
+
+			return frequentRenterPoints;
+		}
 	}
 }
