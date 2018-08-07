@@ -31,12 +31,12 @@ namespace VideoStore
 
 				frequentRenterPoints += rental.GetFrequentRenterPoints();
 
-				result += ("\t" + rental.Movie.Title + "\t" + rentalCost.ToString() + "\n");
+				result += "\t" + rental.Movie.Title + "\t" + rentalCost + "\n";
 				totalAmount += rentalCost;
 			}
 
-			result += "Amount owed is " + totalAmount.ToString() + "\n";
-			result += "You earned " + frequentRenterPoints.ToString() + " frequent renter points";
+			result += "Amount owed is " + totalAmount + "\n";
+			result += "You earned " + frequentRenterPoints + " frequent renter points";
 
 			return result;
 		}
