@@ -24,8 +24,7 @@ namespace VideoStore
 
 			foreach (var rental in _rentals)
 			{
-				var thisAmount = rental.Movie.GetCost(rental);
-				result += ("\t" + rental.Movie.Title + "\t" + thisAmount + "\n");
+				result += ("\t" + rental.Movie.Title + "\t" + rental.GetCost() + "\n");
 			}
 
 			result += ("Amount owed is " + GetTotalAmount() + "\n");
@@ -39,7 +38,7 @@ namespace VideoStore
 			double totalAmount = 0;
 			foreach (var rental in _rentals)
 			{
-				var thisAmount = rental.Movie.GetCost(rental);
+				var thisAmount = rental.GetCost();
 				totalAmount += thisAmount;
 			}
 
@@ -51,7 +50,7 @@ namespace VideoStore
 			var frequentRenterPoints = 0;
 			foreach (var rental in _rentals)
 			{
-				frequentRenterPoints += rental.Movie.GetFrequentRenterPoints(rental);
+				frequentRenterPoints += rental.GetFrequentRenterPoints();
 			}
 
 			return frequentRenterPoints;

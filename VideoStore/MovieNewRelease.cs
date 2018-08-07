@@ -8,14 +8,14 @@
         
         public override string Title => _title + " (New)";
 
-        public override double GetCost(Rental rental)
+        public override double GetCost(int daysRented)
         {
-            return rental.DaysRented * 3;
+            return daysRented * 3;
         }
         
-        public override int GetFrequentRenterPoints(Rental rental)
+        public override int GetFrequentRenterPoints(int daysRented)
         {
-            return rental.DaysRented > 1 ? 2 : 1;
+            return daysRented > 1 ? 2 : 1;
         }
     }
 }

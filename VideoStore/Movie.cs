@@ -11,9 +11,9 @@ namespace VideoStore
 
 		public virtual string Title => _title;
 
-		public abstract double GetCost(Rental rental);
+		public abstract double GetCost(int daysRented);
 
-		public virtual int GetFrequentRenterPoints(Rental rental)
+		public virtual int GetFrequentRenterPoints(int daysRented)
 		{
 			return 1;
 		}

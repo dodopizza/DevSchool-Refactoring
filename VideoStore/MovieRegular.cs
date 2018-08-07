@@ -6,13 +6,13 @@
         {
         }
         
-        public override double GetCost(Rental rental)
+        public override double GetCost(int daysRented)
         {
             double thisAmount = 2;
 
-            if (rental.DaysRented > 2)
+            if (daysRented > 2)
             {
-                thisAmount += (rental.DaysRented - 2) * 1.5;
+                thisAmount += (daysRented - 2) * 1.5;
             }
 
             return thisAmount;

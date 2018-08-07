@@ -11,5 +11,15 @@ namespace VideoStore
 		public int DaysRented { get; }
 
 		public Movie Movie { get; }
+
+		public double GetCost()
+		{
+			return Movie.GetCost(DaysRented);
+		}
+
+		public  int GetFrequentRenterPoints()
+		{
+			return Movie.GetFrequentRenterPoints(DaysRented);
+		}
 	}
 }
