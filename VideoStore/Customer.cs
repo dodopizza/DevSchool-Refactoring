@@ -35,7 +35,6 @@ namespace VideoStore
 				totalAmount += thisAmount;
 			}
 
-
 			result += ("Amount owed is " + totalAmount + "\n");
 			result += ("You earned " + frequentRenterPoints.ToString() + " frequent renter points");
 

@@ -1,5 +1,3 @@
-using System;
-
 namespace VideoStore
 {
 	public class Movie 
@@ -7,25 +5,20 @@ namespace VideoStore
 		public const int CHILDRENS = 2;
 		public const int REGULAR = 0;
 		public const int NEW_RELEASE = 1;
-		private string _title;
-		private int _priceCode;
+		private readonly string _title;
 
 		public Movie(string title, int priceCode) 
 		{
-			this._title = title;
-			this._priceCode = priceCode;
+			_title = title;
+			PriceCode = priceCode;
 		}
 
-	    public int PriceCode
-	    {
-            get { return _priceCode; }
-            set { _priceCode = value; }
-	    }
+	    public int PriceCode { get; set; }
 
-		public String Title 
+		public string Title 
 		{
             get {
-                if (_priceCode == 1)
+                if (PriceCode == 1)
                 return _title + " (New)";
                 return _title;
             }
