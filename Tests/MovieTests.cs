@@ -5,32 +5,28 @@ namespace Tests
 {
 	public class MovieTests
 	{
-		private const string MOVIE_TITLE = "some movie";
-		private Movie movie;
+		[Fact]
+		public void GetRegularMovieTitle()
+		{
+			var movie = new RegularMovie("some movie");
 
-		public MovieTests()
-		{
-			movie = new Movie(MOVIE_TITLE, Movie.REGULAR);
+			Assert.Equal("some movie", movie.Title);
 		}
-  
-		[Fact]
-		public void GetPriceCode() 
-		{
-			Assert.Equal(Movie.REGULAR, movie.PriceCode);
-		}
-  
-		[Fact]
-		public void SetPriceCode() 
-		{
-			movie.PriceCode = Movie.CHILDRENS;
 
-			Assert.Equal(Movie.CHILDRENS, movie.PriceCode);
-		}
-  
 		[Fact]
-		public void GetTitle() 
+		public void GetChildrensMovieTitle()
 		{
-			Assert.Equal(MOVIE_TITLE, movie.Title);
+			var movie = new ChildrensMovie("some movie");
+
+			Assert.Equal("some movie", movie.Title);
+		}
+
+		[Fact]
+		public void GetNewReleaseMovieTitle()
+		{
+			var movie = new NewReleaseMovie("some movie");
+
+			Assert.Equal("some movie (New)", movie.Title);
 		}
 	}
 }

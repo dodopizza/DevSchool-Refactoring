@@ -27,7 +27,6 @@ namespace VideoStore
 				result += ("\t" + rental.Movie.Title + "\t" + rental.GetCost().ToString() + "\n");
 			}
 
-
 			result += ("Amount owed is " + GetTotalCost() + "\n");
 			result += ("You earned " + GetFrequentRenterPoints().ToString() + " frequent renter points");
 

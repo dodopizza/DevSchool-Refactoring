@@ -2,34 +2,31 @@ using System;
 
 namespace VideoStore
 {
-	public class Movie 
+	public abstract class Movie
 	{
-		public const int CHILDRENS = 2;
-		public const int REGULAR = 0;
-		public const int NEW_RELEASE = 1;
-		private string _title;
-		private int _priceCode;
+		protected readonly string _title;
 
-		public Movie(string title, int priceCode) 
+		protected Movie(string title)
 		{
-			this._title = title;
-			this._priceCode = priceCode;
+			_title = title;
+		}
+		public virtual string Title => _title;
+
+		public virtual double GetCost(int daysRented)
+		{
+			var rentalCost = 2.0;
+
+			if (daysRented > 2)
+			{
+				rentalCost += (daysRented - 2) * 1.5;
+			}
+
+			return rentalCost;
 		}
 
-	    public int PriceCode
-	    {
-            get { return _priceCode; }
-            set { _priceCode = value; }
-	    }
-
-		public String Title 
+		public virtual int GetFrequentRenterPoints(int daysRented)
 		{
-            get {
-                if (_priceCode == 1)
-                return _title + " (New)";
-                return _title;
-            }
-			
+			return 1;
 		}
 	}
 }
