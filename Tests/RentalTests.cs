@@ -11,7 +11,7 @@ namespace Tests
 		public RentalTests()
 		{
 			
-			movie = new Movie("some movie", Movie.CHILDRENS);
+			movie = new MovieChildren("some movie");
 			rental = new Rental(movie, 1);
 		}
 

@@ -1,28 +1,21 @@
 namespace VideoStore
 {
-	public class Movie 
+	public abstract class Movie 
 	{
-		public const int CHILDRENS = 2;
-		public const int REGULAR = 0;
-		public const int NEW_RELEASE = 1;
-		private readonly string _title;
+		protected readonly string _title;
 
-		public Movie(string title, int priceCode) 
+		protected Movie(string title) 
 		{
 			_title = title;
-			PriceCode = priceCode;
 		}
 
-	    public int PriceCode { get; set; }
+		public virtual string Title => _title;
 
-		public string Title 
+		public abstract double GetCost(Rental rental);
+
+		public virtual int GetFrequentRenterPoints(Rental rental)
 		{
-            get {
-                if (PriceCode == 1)
-                return _title + " (New)";
-                return _title;
-            }
-			
+			return 1;
 		}
 	}
 }
